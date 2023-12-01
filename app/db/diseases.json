@@ -1,0 +1,34 @@
+{
+    "atelectasis": {
+      "disease_details": "Atelectasis refers to the partial or complete collapse of a part or the entire lung. It's often caused by a blocked airway or pressure from outside the lung. Symptoms can include difficulty breathing and coughing.",
+      "preventive_measures": "<br/>1. Doing deep-breathing exercises using a hand-held device called an incentive spirometer, followed by deep coughing to help clear your lungs.<br/>2.  Positioning your body so that your head is lower than your chest.<br/>3. Tapping on your chest over the collapsed area to loosen mucus.<br/>Medical evaluation is necessary for diagnosis and management."
+    },
+        "effusion": {
+      "disease_details": "This is the build-up of fluid between the layers of tissue lining the lungs and chest cavity. It can result from various medical conditions, including heart failure, pneumonia, and lung cancer.",
+      "preventive_measures": "<br/>1. Take medication as recommended by your health care provider to relieve pain and inflammation.<br/>2. Find the position that causes you the least discomfort when you rest.<br/>3. Smoking can cause more irritation to your lungs.<br/>Medical evaluation is necessary for diagnosis and management."
+    },
+      "infiltration": {
+      "disease_details": "Infiltration in a medical context often refers to the accumulation of fluid or cells in a tissue or organ. In the lungs, this can be due to conditions like pneumonia or pulmonary edema.",
+      "preventive_measures": "<br/>1. Take OTC medications such as ibuprofen (Advil) or acetaminophen (Tylenol) to lower your fever and help relieve any aches and pains.<br/>2. Use OTC decongestants or expectorants to help loosen mucus and make it easier to cough up.<br/>3. Be sure to get plenty of rest.<br/>4. Drink lots of fluids.<br/>Medical evaluation is necessary for diagnosis and management."
+    },
+      "mass": {
+      "disease_details": "A pulmonary mass is a spot on lung tissue that can be seen on an X-ray or other scans. It could be benign or malignant. Causes range from infections to benign tumors or lung cancer.",
+      "preventive_measures": "<br/>Treatment depends on the underlying cause. Consultation with a healthcare professional is essential."
+    },
+      "no finding": {
+      "disease_details": "",
+      "preventive_measures": ""
+    },
+      "nodule": {
+      "disease_details": "A pulmonary nodule is a small, round growth on the lung, often detected during an X-ray or CT scan for another reason. Most are benign, but some can be cancerous.",
+      "preventive_measures": "<br/>Treatment depends on the underlying cause. Medical evaluation is necessary for diagnosis and management."
+    },
+      "pneumonia": {
+      "disease_details": "Pneumonia is an infection that inflames the air sacs in one or both lungs. The air sacs may fill with fluid or pus, causing cough, fever, chills, and difficulty breathing.",
+      "preventive_measures": "<br/>Rest, hydration, and prescribed antibiotics (if bacterial). Medical consultation is essential for severe cases."
+    },
+      "pneumothorax": {
+      "disease_details": "Pneumothorax occurs when air leaks into the space between your lung and chest wall. This air pushes on the outside of your lung and makes it collapse. It can be caused by a chest injury, certain medical procedures, or lung disease.",
+      "preventive_measures": "<br/>Seek immediate medical attention. Home remedies are not appropriate; medical intervention is necessary."
+    }
+  }

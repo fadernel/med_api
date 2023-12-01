@@ -1,0 +1,34 @@
+version: "3.1"
+
+stories:
+
+- story: begin path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - checkpoint: check_mood
+
+- story: happy path
+  steps:
+  - checkpoint: check_mood
+  - intent: mood_great
+  - action: utter_happy
+  - checkpoint: check_mood_finished
+
+- story: sad path
+  steps:
+  - checkpoint: check_mood
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+  - checkpoint: check_mood_finished
+
+- story: path about api
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: give_api
+  - action: utter_analyzing_image
+  - action: action_process_image
