@@ -9,9 +9,71 @@ intents:
   - mood_unhappy
   - bot_challenge
   - give_api
+  - thanks
+  - use_model
 
 actions:
   - action_process_image
+
+forms:
+  user_form:
+    required_slots:
+      - user_name
+      - user_age
+      - user_birth
+      - user_address
+      - user_height
+      - user_weight
+
+slots:
+  user_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: user_form
+            requested_slot: user_name
+  user_age:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: user_form
+            requested_slot: user_age
+  user_birth:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: user_form
+            requested_slot: user_birth
+  user_address:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: user_form
+            requested_slot: user_address
+  user_height:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: user_form
+            requested_slot: user_height
+  user_weight:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: user_form
+            requested_slot: user_weight
 
 responses:
   utter_greet:
@@ -20,6 +82,17 @@ responses:
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
     image: "https://styles.redditmedia.com/t5_7unw9n/styles/communityIcon_u16solb39hka1.png"
+
+  utter_image_xray:
+  - text: "We are going to analize this image:"
+    image: "http://localhost:8000/xray_image"
+
+  utter_pdf_xray:
+  - text: "Here is the analysis report:"
+    custom:
+        payload: pdf_attachment
+        title: "PDF report"
+        url: "http://localhost:8000/xray_pdf"
 
   utter_did_that_help:
   - text: "Did that help you?"
@@ -41,6 +114,37 @@ responses:
 
   utter_analyzing_image:
   - text: The image is being analyzed 
+
+  utter_fill_data:
+  - text: Ok, so I need the patient's information
+
+  utter_ask_user_name:
+  - text: Can I have their name?
+
+  utter_ask_user_age:
+  - text: Can I have their age?
+
+  utter_ask_user_birth:
+  - text: Can I have their birth date?
+
+  utter_ask_user_address:
+  - text: Can I have their address?
+
+  utter_ask_user_height:
+  - text: Can I have their height?
+
+  utter_ask_user_weight:
+  - text: Can I have their weight?
+
+  utter_submit:
+  - text: Ok. Thanks!
+
+  utter_slots_values:
+  - text: Excellent, so their name is {user_name} and their age is {user_age}, {user_birth} {user_address} {user_height} {user_weight}
+
+  utter_requeriment:
+  - text: Please, write your requirement
+
 
 session_config:
   session_expiration_time: 60

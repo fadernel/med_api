@@ -25,6 +25,11 @@ stories:
   - action: utter_happy
   - checkpoint: check_mood_finished
 
+- story: requeriment
+  steps:
+  - checkpoint: check_mood_finished
+  - action: utter_requeriment
+
 - story: path about api
   steps:
   - intent: greet

@@ -3,6 +3,10 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from utils.util import preprocess_image, create_pdf
 from pydantic import BaseModel
+from fastapi.responses import FileResponse
+
+image_path = '.\\temp\image.jpg'
+pdf_path = '.\\temp\\medical_xray_report.pdf'
 
 origins = [
     "http://localhost",
@@ -64,6 +68,14 @@ async def CreatePdf(user: User):
     if create_pdf(user.name, user.age, user.birth, user.address, user.height, user.weight, user.disease) == 'created':
         return JSONResponse(status_code=200, content={"message": 'pdf created'})
     return JSONResponse(status_code=500, content={"message": 'error creating the pdf'})
+
+@app.get("/xray_image")
+async def image():
+    return FileResponse(image_path)
+
+@app.get("/xray_pdf")
+async def pdf():
+    return FileResponse(pdf_path)
 
 # #Middleware to check credentials
 # @app.middleware("http")

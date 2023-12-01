@@ -110,3 +110,16 @@ nlu:
     - What is the time
     - What is 2 + 2?
     - Who's the US President?
+
+- intent: use_model
+  examples: |
+    - I would like to analize an image
+    - I want to check an x-ray
+    - Do my pacient has a disease
+    - Use the algorithm
+
+
+ 
+
+
+

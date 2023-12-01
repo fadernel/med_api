@@ -14,6 +14,8 @@ import json
 
 #Custom vars
 image_path = '.\\temp\image.jpg'
+json_path = '.\\db\\diseases.json'
+pdf_path = '.\\temp\\medical_xray_report.pdf'
 IMAGE_SIZE = 224
 file = '..\\model\\CustomNet.pth'
 categories = ['Atelectasis',
@@ -138,7 +140,7 @@ def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight=
     disease_details, preventive_measures =  find_disease_info(udisease)
 
     # Create a PDF document
-    pdf_filename = ".\\temp\\medical_xray_report.pdf"
+    pdf_filename = pdf_path
     doc = SimpleDocTemplate(pdf_filename, pagesize=letter)
 
     # Define a custom frame with margins for the content area
@@ -212,7 +214,7 @@ def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight=
     elements.append(Paragraph("Front Chest X-ray", title_style))
 
     # X-ray Image
-    image = Image(".\\temp\\image.jpg", width=4 * inch, height=3 * inch)
+    image = Image(image_path, width=4 * inch, height=3 * inch)
     elements.append(image)
     elements.append(Spacer(1, 0.3 * inch))
 
@@ -231,7 +233,7 @@ def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight=
     return 'created'
 
 def find_disease_info(disease_name):
-    with open('.\\db\\diseases.json') as fp:
+    with open(json_path) as fp:
         diseases_data = json.load(fp)
     
     disease_info = diseases_data.get(disease_name.lower())

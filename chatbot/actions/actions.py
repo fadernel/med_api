@@ -15,6 +15,9 @@ from rasa_sdk.executor import CollectingDispatcher
 import requests
 import json 
 
+#User disease
+U_DISEASE = ''
+
 class Utils():
     @staticmethod
     def find_highest_value(data):
@@ -27,6 +30,7 @@ class ActionProccessImage(Action):
     API_ENDPOINT = 'http://localhost:8000/proccessimage'
     API_KEY = 'LambtonProject'
 
+
     def name(self) -> Text:
         return "action_process_image"
 
@@ -34,12 +38,14 @@ class ActionProccessImage(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-
+        global U_DISEASE
+        
         headers = {'x-token': self.API_KEY}
         res = requests.get(url = self.API_ENDPOINT, headers=headers)
         if res.status_code != 404:
             response = json.loads(res.text)
             disease, value = Utils.find_highest_value(response)
+            U_DISEASE = disease
             
             if disease.lower() != 'no finding':
                 message=f"After an in-depth analysis, there is a high probability that the patient has {disease}"
