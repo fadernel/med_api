@@ -89,4 +89,4 @@ rasa/keys
 # Local Netlify folder
 .netlify
 rasa.code-workspace
-/app/temp
+/app/temp/*
