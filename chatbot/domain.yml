@@ -11,9 +11,12 @@ intents:
   - give_api
   - thanks
   - use_model
+  - show_pdf
+  - out_of_scope
 
 actions:
   - action_process_image
+  - action_create_pdf
 
 forms:
   user_form:
@@ -78,6 +81,7 @@ slots:
 responses:
   utter_greet:
   - text: "Hey! How are you?"
+  - text: "Hello! How are you?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -102,48 +106,79 @@ responses:
 
   utter_goodbye:
   - text: "Bye"
+  - text: "See you later"
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
   utter_out_of_scope:
   - text: Sorry, I can't handle that request.
+  - text: Sorry, I can't understand that request.
 
   utter_please_rephrase:
   - text: I'm sorry, I didn't quite understand that. Could you rephrase?
 
   utter_analyzing_image:
   - text: The image is being analyzed 
+  - text: Analyzing image
+  - text: Validating image
 
   utter_fill_data:
   - text: Ok, so I need the patient's information
+  - text: Fine, so please fill out the patient's information
 
   utter_ask_user_name:
   - text: Can I have their name?
+  - text: Could you give me their name?
+  - text: Please write their name
+
 
   utter_ask_user_age:
   - text: Can I have their age?
+  - text: Could you give me their age?
+  - text: Please write their age
 
   utter_ask_user_birth:
   - text: Can I have their birth date?
+  - text: Could you give me their birth date?
+  - text: Please write their birth date
 
   utter_ask_user_address:
   - text: Can I have their address?
+  - text: Could you give me their address?
+  - text: Please write their address
 
   utter_ask_user_height:
   - text: Can I have their height?
+  - text: Could you give me their height?
+  - text: Please write their height
 
   utter_ask_user_weight:
   - text: Can I have their weight?
+  - text: Could you give me their weight?
+  - text: Please write their weight?
 
   utter_submit:
   - text: Ok. Thanks!
+  - text: Thank you very much!
 
   utter_slots_values:
-  - text: Excellent, so their name is {user_name} and their age is {user_age}, {user_birth} {user_address} {user_height} {user_weight}
+  - text: Excellent, the information of {user_name} is stored
+  - text: The information of the patient {user_name} was stored
 
   utter_requeriment:
   - text: Please, write your requirement
+  - text: Could you write your requirement
+
+  utter_upload_file:
+  - text: Now, upload the X-ray image using the paperclip button
+  - text: Please, upload the X-ray image using the paperclip button
+
+  utter_thanks_contact:
+  - text: Thank you for contacting us
+
+  utter_ask_report:
+  - text: Do you want to generate a pdf report?
 
 
 session_config:

@@ -73,6 +73,7 @@ nlu:
     - so good
     - so perfect
     - fine
+    - very good
 
 - intent: mood_unhappy
   examples: |
@@ -113,11 +114,18 @@ nlu:
 
 - intent: use_model
   examples: |
-    - I would like to analize an image
+    - I would like to analyze an image
     - I want to check an x-ray
     - Do my pacient has a disease
     - Use the algorithm
+    - analize image
 
+- intent: show_pdf
+  examples: |
+    - Can you show me the pdf?
+    - Generate pdf
+    - Show me pdf
+    - pdf
 
  
 

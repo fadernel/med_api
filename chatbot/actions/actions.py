@@ -41,6 +41,7 @@ class ActionProccessImage(Action):
         global U_DISEASE
         
         headers = {'x-token': self.API_KEY}
+        print('HOLA')
         res = requests.get(url = self.API_ENDPOINT, headers=headers)
         if res.status_code != 404:
             response = json.loads(res.text)
@@ -52,10 +53,66 @@ class ActionProccessImage(Action):
             else:
                 message=f"After an in-depth analysis, there is a high probability that the patient does not have any diseases"
         else:
-                message=f"Please upload the image. Then type 'analyze'"
+                message=f"Please upload the image. Then type 'analyze image'"
 
         dispatcher.utter_message(text=message)
         
         return []
+
+class ActionCreatePDF(Action):
     
+    API_ENDPOINT = 'http://localhost:8000/createpdf'
+    API_KEY = 'LambtonProject'
+
+
+    def name(self) -> Text:
+        return "action_create_pdf"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        global U_DISEASE
+        
+        if U_DISEASE != "":
+            disease = U_DISEASE
+        else:
+            disease = 'No Finding'
+        
+        headers = {
+            "x-token": "LambtonProject",
+            "Content-Type": "application/json"
+        }
+        
+        payload = {
+            "name": tracker.get_slot("user_name"),
+            "age": tracker.get_slot("user_age"),
+            "birth": tracker.get_slot("user_birth"),
+            "address": tracker.get_slot("user_address"),
+            "height": tracker.get_slot("user_height"),
+            "weight": tracker.get_slot("user_weight"),
+            "disease": disease
+        }        
+        # payload = {
+        #     "name": "John Doe",
+        #     "age": "30",
+        #     "birth": "January 1, 1993",
+        #     "address": "123 Main St, City, Country",
+        #     "height": "180",
+        #     "weight": "75",
+        #     "disease": "mass"
+        # }
+        res = requests.request("POST", self.API_ENDPOINT, json=payload, headers=headers)
+        print(payload)
+        print(res.text)
+
+        
+        if res.status_code == 200:
+            message=f"The PDF was created"
+        else:
+            message=f"Error creating PDF"
+
+        dispatcher.utter_message(text=message)
+        
+        return []
 

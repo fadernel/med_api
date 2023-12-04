@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from utils.util import preprocess_image, create_pdf
 from pydantic import BaseModel
 from fastapi.responses import FileResponse
+import uvicorn
 
 image_path = '.\\temp\image.jpg'
 pdf_path = '.\\temp\\medical_xray_report.pdf'

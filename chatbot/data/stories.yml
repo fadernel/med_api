@@ -29,11 +29,16 @@ stories:
   steps:
   - checkpoint: check_mood_finished
   - action: utter_requeriment
+ 
 
-- story: path about api
+- story: proccess image affirmative
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: give_api
-  - action: utter_analyzing_image
+  - action: utter_image_xray
   - action: action_process_image
+  - action: action_create_pdf
+
+- story: show pdf
+  steps:
+  - intent: show_pdf
+  - action: utter_pdf_xray
