@@ -1,4 +1,4 @@
-import PIL.Image
+from PIL import Image as pge
 from torchvision import transforms
 import torch.nn as nn
 import torch
@@ -14,6 +14,8 @@ import json
 
 #Custom vars
 image_path = '.\\temp\image.jpg'
+json_path = '.\\db\\diseases.json'
+pdf_path = '.\\temp\\medical_xray_report.pdf'
 IMAGE_SIZE = 224
 file = '..\\model\\CustomNet.pth'
 categories = ['Atelectasis',
@@ -27,7 +29,7 @@ categories = ['Atelectasis',
 
 
 class CustomNet(nn.Module):
-    def __init__(self, num_classes=8, is_trained=False):
+    def __init__(self, num_classes=8):
         super().__init__()
         self.ConvLayer1 = nn.Sequential(
             nn.Conv2d(3, 8, 3),
@@ -101,14 +103,19 @@ def preprocess_image(image_path=image_path):
     return response
   
   
-def preprocess_test_image(image_path):
-    image = PIL.Image.open(image_path).convert('RGB')
+def preprocess_test_image(image_path, image_size=224):
+    # Upload image
+    image = pge.open(image_path).convert("RGB")
+
+    # Apply transformations
     transform = transforms.Compose([
-        transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        transforms.Resize((image_size, image_size)),
+        transforms.ToTensor()
     ])
-    return transform(image).unsqueeze(0)
+    image = transform(image)
+    image = image.unsqueeze(0)  # Add lot dimension, in our case we're loading only one image
+    
+    return image
 
 def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight= None, uweight= None, udisease= None):
     # Hardcoded patient information
@@ -138,7 +145,7 @@ def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight=
     disease_details, preventive_measures =  find_disease_info(udisease)
 
     # Create a PDF document
-    pdf_filename = ".\\temp\\medical_xray_report.pdf"
+    pdf_filename = pdf_path
     doc = SimpleDocTemplate(pdf_filename, pagesize=letter)
 
     # Define a custom frame with margins for the content area
@@ -212,7 +219,7 @@ def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight=
     elements.append(Paragraph("Front Chest X-ray", title_style))
 
     # X-ray Image
-    image = Image(".\\temp\\image.jpg", width=4 * inch, height=3 * inch)
+    image = Image(image_path, width=4 * inch, height=3 * inch)
     elements.append(image)
     elements.append(Spacer(1, 0.3 * inch))
 
@@ -231,7 +238,7 @@ def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight=
     return 'created'
 
 def find_disease_info(disease_name):
-    with open('.\\db\\diseases.json') as fp:
+    with open(json_path) as fp:
         diseases_data = json.load(fp)
     
     disease_info = diseases_data.get(disease_name.lower())

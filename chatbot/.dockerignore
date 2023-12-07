@@ -1,0 +1,6 @@
+tests/*
+models/*
+actions/*
+**/*.md
+venv
+med_api_bot
