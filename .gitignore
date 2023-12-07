@@ -90,3 +90,5 @@ rasa/keys
 .netlify
 rasa.code-workspace
 /app/temp/*
+/app/med_api_env/
+/chatbot/med_api_bot/

@@ -14,7 +14,34 @@ origins = [
     "http://localhost:8080",
 ]
 
-app = FastAPI()
+tags_metadata = [
+    {
+        "name": "health",
+        "description": "Method to check if the api is working, it doesn't require a token.",
+    },
+    {
+        "name": "files",
+        "description": "Method to upload images, it requires a token.",
+    },
+    {
+        "name": "proccessimage",
+        "description": "Method to proccess the image using the ML Model, it requires a token.",
+    },
+    {
+        "name": "createpdf",
+        "description": "Method to create a PDF report, it requires a token.",
+    },
+    {
+        "name": "xray_image",
+        "description": "Method to get the image stored in the server, it doesn't require a token.",
+    },
+    {
+        "name": "xray_pdf",
+        "description": "Method to get the pdf stored in the server, it doesn't require a token.",
+    },
+]
+
+app = FastAPI(openapi_tags=tags_metadata)
 
 app.add_middleware(
     CORSMiddleware,
@@ -44,11 +71,11 @@ async def verify_token(request: Request):
         raise HTTPException(status_code=403, detail="X-Token header invalid")
 
 
-@app.get("/health", dependencies=[Depends(verify_token)])
+@app.get("/health", dependencies=[Depends(verify_token)], tags=["health"])
 async def health():
     return JSONResponse(status_code=200, content={"message": "IT'S ALIVE!!!"})
 
-@app.post("/files", dependencies=[Depends(verify_token)])
+@app.post("/files", dependencies=[Depends(verify_token)], tags=["files"])
 async def UploadImage(file: bytes = File(...)):
     #Loading the image
     with open('.\\temp\image.jpg','wb') as image:
@@ -56,7 +83,7 @@ async def UploadImage(file: bytes = File(...)):
         image.close()
     return JSONResponse(status_code=200, content={"message": 'image loaded'})
 
-@app.get("/proccessimage", dependencies=[Depends(verify_token)])
+@app.get("/proccessimage", dependencies=[Depends(verify_token)], tags=["proccessimage"])
 async def ProcessImage():
     response = preprocess_image()
     if response is None:
@@ -64,17 +91,17 @@ async def ProcessImage():
     else:
         return response
     
-@app.post("/createpdf", dependencies=[Depends(verify_token)])
+@app.post("/createpdf", dependencies=[Depends(verify_token)], tags=["createpdf"])
 async def CreatePdf(user: User):
     if create_pdf(user.name, user.age, user.birth, user.address, user.height, user.weight, user.disease) == 'created':
         return JSONResponse(status_code=200, content={"message": 'pdf created'})
     return JSONResponse(status_code=500, content={"message": 'error creating the pdf'})
 
-@app.get("/xray_image")
+@app.get("/xray_image", tags=["xray_image"])
 async def image():
     return FileResponse(image_path)
 
-@app.get("/xray_pdf")
+@app.get("/xray_pdf", tags=["xray_pdf"])
 async def pdf():
     return FileResponse(pdf_path)
 

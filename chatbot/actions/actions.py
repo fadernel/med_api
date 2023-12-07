@@ -14,6 +14,7 @@ from rasa_sdk.executor import CollectingDispatcher
 
 import requests
 import json 
+import os
 
 #User disease
 U_DISEASE = ''
@@ -27,8 +28,8 @@ class Utils():
 
 class ActionProccessImage(Action):
     
-    API_ENDPOINT = 'http://localhost:8000/proccessimage'
-    API_KEY = 'LambtonProject'
+    API_ENDPOINT = os.environ['API_ENDPOINT']+'/proccessimage'
+    API_KEY = os.environ['API_KEY']
 
 
     def name(self) -> Text:
@@ -41,7 +42,6 @@ class ActionProccessImage(Action):
         global U_DISEASE
         
         headers = {'x-token': self.API_KEY}
-        print('HOLA')
         res = requests.get(url = self.API_ENDPOINT, headers=headers)
         if res.status_code != 404:
             response = json.loads(res.text)
@@ -61,8 +61,8 @@ class ActionProccessImage(Action):
 
 class ActionCreatePDF(Action):
     
-    API_ENDPOINT = 'http://localhost:8000/createpdf'
-    API_KEY = 'LambtonProject'
+    API_ENDPOINT = os.environ['API_ENDPOINT']+'/createpdf'
+    API_KEY = os.environ['API_KEY']
 
 
     def name(self) -> Text:
@@ -80,7 +80,7 @@ class ActionCreatePDF(Action):
             disease = 'No Finding'
         
         headers = {
-            "x-token": "LambtonProject",
+            "x-token": self.API_KEY,
             "Content-Type": "application/json"
         }
         

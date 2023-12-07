@@ -1,17 +1,15 @@
-FROM python:3.10.13-slim
+FROM python:3.10-slim
 
 RUN python -m pip install rasa
+# RUN python -m pip install requests
 
 WORKDIR /app
-COPY ..
+COPY . .
 
-RUN rasa train nlu
+RUN rasa train
 
-#set the user to run, don't run as root
 USER 1001
 
-# set entrypoint for interactive shells
-ENTRYPOINT ["rasa"]
+ENTRYPOINT [ "rasa" ]
 
-#command to run when container is called to run
-CMD ["run", "--enable-api", "--port", "8080"]
+CMD [ "run", "--enable-api", "--port", "8080", "--cors", "*" ]

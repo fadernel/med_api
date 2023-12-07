@@ -1,4 +1,4 @@
-import PIL.Image
+from PIL import Image as pge
 from torchvision import transforms
 import torch.nn as nn
 import torch
@@ -29,7 +29,7 @@ categories = ['Atelectasis',
 
 
 class CustomNet(nn.Module):
-    def __init__(self, num_classes=8, is_trained=False):
+    def __init__(self, num_classes=8):
         super().__init__()
         self.ConvLayer1 = nn.Sequential(
             nn.Conv2d(3, 8, 3),
@@ -103,14 +103,19 @@ def preprocess_image(image_path=image_path):
     return response
   
   
-def preprocess_test_image(image_path):
-    image = PIL.Image.open(image_path).convert('RGB')
+def preprocess_test_image(image_path, image_size=224):
+    # Upload image
+    image = pge.open(image_path).convert("RGB")
+
+    # Apply transformations
     transform = transforms.Compose([
-        transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        transforms.Resize((image_size, image_size)),
+        transforms.ToTensor()
     ])
-    return transform(image).unsqueeze(0)
+    image = transform(image)
+    image = image.unsqueeze(0)  # Add lot dimension, in our case we're loading only one image
+    
+    return image
 
 def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight= None, uweight= None, udisease= None):
     # Hardcoded patient information
