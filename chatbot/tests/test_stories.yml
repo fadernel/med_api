@@ -20,7 +20,7 @@ stories:
     intent: greet
   - action: utter_greet
   - user: |
-      amazing
+      Incredible
     intent: mood_great
   - action: utter_happy
   - user: |
@@ -40,7 +40,7 @@ stories:
   - action: utter_cheer_up
   - action: utter_did_that_help
   - user: |
-      yes
+      yep
     intent: affirm
   - action: utter_happy
 
@@ -51,7 +51,7 @@ stories:
     intent: greet
   - action: utter_greet
   - user: |
-      not good
+      Unsatisfactory
     intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -67,7 +67,7 @@ stories:
     intent: greet
   - action: utter_greet
   - user: |
-      very terrible
+      Extremely awful
     intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -79,13 +79,125 @@ stories:
 - story: say goodbye
   steps:
   - user: |
-      bye-bye!
+      See you later!
     intent: goodbye
   - action: utter_goodbye
 
 - story: bot challenge
   steps:
   - user: |
-      are you a bot?
+      are you a chatbot?
     intent: bot_challenge
   - action: utter_iamabot
+
+- story: fallback validation
+  steps:
+  - user: |
+      jojsa ijdaiodjs iajsdiojaejiw?
+    intent: nlu_fallback
+  - action: utter_please_rephrase
+
+- story: Greet
+  steps:
+  - user: |
+      Hi
+    intent: greet
+  - action: utter_greet
+
+- story: check disease atelectasis
+  steps:
+  - user: |
+      What does atelectasis mean?
+    intent: what_atelectasis
+  - action: utter_give_what_atelectasis
+
+- story: check disease atelectasis
+  steps:
+  - user: |
+      What does atelectasis mean?
+    intent: what_atelectasis
+  - action: utter_give_what_atelectasis
+
+- story: check disease effusion 
+  steps:
+  - user: |
+      Can you explain what effusion is?
+    intent: what_effusion
+  - action: utter_give_what_effusion
+
+- story: check disease infiltration 
+  steps:
+  - user: |
+      Could you provide some advice on managing infiltration?
+    intent: reco_infiltration
+  - action: utter_give_recomendations_infiltration
+
+- story: check disease mass 
+  steps:
+  - user: |
+      Can you share details about the available treatment options for a mass?
+    intent: treat_mass
+  - action: utter_give_treat_mass
+
+- story: check disease nodule 
+  steps:
+  - user: |
+      Could you provide a more detailed explanation of what a nodule is?
+    intent: what_nodule
+  - action: utter_give_what_nodule
+
+- story: check disease pneumonia 
+  steps:
+  - user: |
+      What are your suggestions for treating pneumonia?
+    intent: reco_pneumonia
+  - action: utter_give_recomendations_pneumonia
+
+- story: check disease pneumothorax 
+  steps:
+  - user: |
+      Can you offer any guidance on how to manage pneumothorax?
+    intent: reco_pneumothorax
+  - action: utter_give_recomendations_pneumothorax
+
+- story: happy story
+  steps:
+  - user: |
+      Hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Fine
+    intent: mood_great
+  - action: utter_happy
+  - action: utter_requeriment
+  - user: |
+      I want to analyze an xray
+    intent: use_model
+  - action: utter_fill_data
+  - action: user_form
+
+
+- story: happy story 2
+  steps:
+  - user: |
+      Hi there
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Good
+    intent: mood_great
+  - action: utter_happy
+  - action: utter_requeriment
+  - user: |
+      I'm looking to examine an x-ray
+    intent: use_model
+  - action: utter_fill_data
+  - action: user_form
+  
+- story: show pdf 
+  steps:
+  - user: |
+      Please display the PDF
+    intent: show_pdf
+  - action: utter_pdf_xray

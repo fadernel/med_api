@@ -1,0 +1,34 @@
+[
+  {
+    "text": "can you give me recommendations for pneumothorax?",
+    "intent": "reco_pneumothorax",
+    "intent_prediction": {
+      "name": "what_pneumothorax",
+      "confidence": 0.19264258444309235
+    }
+  },
+  {
+    "text": "what do you recommend for pneumothorax?",
+    "intent": "reco_pneumothorax",
+    "intent_prediction": {
+      "name": "treat_pneumothorax",
+      "confidence": 0.20842519402503967
+    }
+  },
+  {
+    "text": "Could you suggest some advice for dealing with pneumothorax?",
+    "intent": "reco_pneumothorax",
+    "intent_prediction": {
+      "name": "what_pneumothorax",
+      "confidence": 0.12185127288103104
+    }
+  },
+  {
+    "text": "What are your suggestions for managing pneumothorax?",
+    "intent": "reco_pneumothorax",
+    "intent_prediction": {
+      "name": "reco_nodule",
+      "confidence": 0.15237729251384735
+    }
+  }
+]

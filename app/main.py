@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, Header, HTTPException, Request, Depends
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from utils.util import preprocess_image, create_pdf
+from utils.util import preprocess_image, create_pdf, upload_image
 from pydantic import BaseModel
 from fastapi.responses import FileResponse
 import uvicorn
@@ -45,7 +45,7 @@ app = FastAPI(openapi_tags=tags_metadata)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -77,10 +77,7 @@ async def health():
 
 @app.post("/files", dependencies=[Depends(verify_token)], tags=["files"])
 async def UploadImage(file: bytes = File(...)):
-    #Loading the image
-    with open('.\\temp\image.jpg','wb') as image:
-        image.write(file)
-        image.close()
+    upload_image(file)
     return JSONResponse(status_code=200, content={"message": 'image loaded'})
 
 @app.get("/proccessimage", dependencies=[Depends(verify_token)], tags=["proccessimage"])

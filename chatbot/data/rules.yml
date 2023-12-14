@@ -40,3 +40,28 @@ rules:
   - action: utter_submit
   - action: utter_slots_values
   - action: utter_upload_file
+
+- rule: proccess image affirmative
+  steps:
+  - intent: give_api
+  - action: utter_image_xray
+  - action: action_process_image
+  - action: action_create_pdf
+
+- rule: Execute action pdf
+  condition:
+    - slot_was_set:
+        - user_name: true
+  steps:
+    - intent: show_pdf
+    - action: utter_pdf_xray
+
+- rule: Execute form fill before pdf
+  condition:
+    - slot_was_set:
+        - user_name: null
+  steps:
+    - intent: show_pdf
+    - action: utter_fill_data_pdf
+    - action: user_form
+    - active_loop: user_form

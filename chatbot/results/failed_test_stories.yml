@@ -1,0 +1,92 @@
+version: "3.1"
+stories:
+- story: check disease infiltration (.\tests\test_stories.yml)
+  steps:
+  - intent: reco_infiltration  # predicted: nlu_fallback: Could you provide some advice on managing infiltration?
+  - action: utter_give_recomendations_infiltration  # predicted: action_unlikely_intent
+- story: check disease mass (.\tests\test_stories.yml)
+  steps:
+  - intent: treat_mass
+  - action: utter_give_treat_mass  # predicted: action_default_fallback
+- story: check disease nodule (.\tests\test_stories.yml)
+  steps:
+  - intent: what_nodule  # predicted: treat_nodule: Could you provide a more detailed explanation of what a nodule is?
+  - action: utter_give_what_nodule
+- story: check disease pneumonia (.\tests\test_stories.yml)
+  steps:
+  - intent: reco_pneumonia  # predicted: nlu_fallback: What are your suggestions for treating pneumonia?
+  - action: utter_give_recomendations_pneumonia
+- story: check disease pneumothorax (.\tests\test_stories.yml)
+  steps:
+  - intent: reco_pneumothorax  # predicted: treat_pneumothorax: Can you offer any guidance on how to manage pneumothorax?
+  - action: utter_give_recomendations_pneumothorax  # predicted: action_unlikely_intent
+- story: happy story (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - action: utter_requeriment
+  - intent: use_model
+  - action: utter_fill_data
+  - action: user_form
+  - action: action_listen  # predicted: utter_submit
+- story: happy story 2 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - action: utter_requeriment
+  - intent: use_model
+  - action: utter_fill_data
+  - action: user_form
+  - action: action_listen  # predicted: utter_submit
+- story: happy path 1 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - action: action_listen  # predicted: utter_requeriment
+- story: show pdf (.\tests\test_stories.yml)
+  steps:
+  - intent: show_pdf
+  - action: utter_pdf_xray  # predicted: utter_fill_data_pdf
+- story: happy path 2 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great  # predicted: nlu_fallback: Incredible
+  - action: utter_happy
+  - action: action_listen  # predicted: utter_requeriment
+  - intent: goodbye
+  - action: utter_goodbye
+- story: sad path 1 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm  # predicted: nlu_fallback: yep
+  - action: utter_happy
+  - action: action_listen  # predicted: utter_requeriment
+- story: sad path 2 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy  # predicted: nlu_fallback: Unsatisfactory
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye  # predicted: action_default_fallback
+- story: sad path 3 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy  # predicted: mood_great: Extremely awful
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye  # predicted: action_default_fallback

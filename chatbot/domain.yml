@@ -13,6 +13,27 @@ intents:
   - use_model
   - show_pdf
   - out_of_scope
+  - what_atelectasis
+  - reco_atelectasis
+  - treat_atelectasis
+  - what_effusion
+  - reco_effusion
+  - treat_effusion
+  - what_infiltration
+  - reco_infiltration
+  - treat_infiltration
+  - what_mass
+  - reco_mass
+  - treat_mass
+  - what_nodule
+  - reco_nodule
+  - treat_nodule
+  - what_pneumonia
+  - reco_pneumonia
+  - treat_pneumonia
+  - what_pneumothorax
+  - reco_pneumothorax
+  - treat_pneumothorax
 
 actions:
   - action_process_image
@@ -112,8 +133,7 @@ responses:
   - text: "I am a bot, powered by Rasa."
 
   utter_out_of_scope:
-  - text: Sorry, I can't handle that request.
-  - text: Sorry, I can't understand that request.
+  - text: Sorry, I can't handle that request, I'm able to process x-ray images, so write something like "I want to check an x-ray".
 
   utter_please_rephrase:
   - text: I'm sorry, I didn't quite understand that. Could you rephrase?
@@ -126,6 +146,9 @@ responses:
   utter_fill_data:
   - text: Ok, so I need the patient's information
   - text: Fine, so please fill out the patient's information
+
+  utter_fill_data_pdf:
+  - text: before generating use this action, I need the patient's information
 
   utter_ask_user_name:
   - text: Can I have their name?
@@ -149,14 +172,14 @@ responses:
   - text: Please write their address
 
   utter_ask_user_height:
-  - text: Can I have their height?
-  - text: Could you give me their height?
-  - text: Please write their height
+  - text: Can I have their height in centimeters?
+  - text: Could you give me their height in centimeters?
+  - text: Please write their height in centimeters
 
   utter_ask_user_weight:
-  - text: Can I have their weight?
-  - text: Could you give me their weight?
-  - text: Please write their weight?
+  - text: Can I have their weight in kilograms?
+  - text: Could you give me their weight in kilograms?
+  - text: Please write their weight in kilograms?
 
   utter_submit:
   - text: Ok. Thanks!
@@ -179,6 +202,69 @@ responses:
 
   utter_ask_report:
   - text: Do you want to generate a pdf report?
+
+  utter_give_what_atelectasis:
+  - text: Atelectasis is a medical condition where part or all of a lung collapses or fails to inflate properly. This can result from a blockage of the airways or pressure from outside the lung. It often leads to reduced oxygen exchange and can cause chest pain, difficulty breathing, and coughing.
+
+  utter_give_treat_atelectasis:
+  - text: Possible treatments for atelectasis include deep breathing exercises, chest physiotherapy, incentive spirometry, bronchoscopy to clear blockages, and medications to treat underlying causes.
+
+  utter_give_recomendations_atelectasis:
+  - text: For atelectasis, recommendations include performing deep breathing exercises, using incentive spirometry, staying active, avoiding smoking, following a healthy diet, staying hydrated, regularly changing positions, and adhering to prescribed medical advice and treatments.
+
+  utter_give_what_infiltration:
+  - text: Infiltration in a medical context often refers to the leakage of fluid or medication from a vein into surrounding tissue, commonly occurring during intravenous (IV) therapy, causing swelling, pain, and redness in the affected area.
+
+  utter_give_recomendations_infiltration:
+  - text: To manage infiltration, recommendations include stopping the IV infusion immediately, removing the IV catheter, elevating the affected limb, applying warm or cold compresses based on the type of infiltrate, monitoring the site for improvement or complications, and avoiding reinsertion of an IV in the same area.
+
+  utter_give_treat_infiltration:
+  - text: Treatments for infiltration focus on relieving symptoms and preventing complications. These may include pain relief measures, topical treatments, and in more severe cases, medical intervention to address any tissue damage or complications that arise from the infiltration
+
+  utter_give_what_mass:
+  - text: A mass in medical terms refers to an abnormal lump or growth of tissue in or on the body, which can be benign (non-cancerous) or malignant (cancerous), varying in size, location, and impact on body functions.
+
+  utter_give_recomendations_mass:
+  - text: For a mass, recommendations generally include monitoring for any changes in size or symptoms, maintaining a healthy lifestyle to support overall health, and following up regularly with healthcare professionals for ongoing evaluation and management.
+
+  utter_give_treat_mass:
+  - text: Possible treatments for a mass depend on its nature and location but can include surgical removal, radiation therapy, chemotherapy, or targeted drug therapy for malignant masses, and observation or minimally invasive procedures for benign ones.
+
+  utter_give_what_nodule:
+  - text: A nodule is a small, roundish growth or lump of tissue that can appear in any part of the body, often found in the lungs or thyroid, and can be benign or malignant.
+
+  utter_give_recomendations_nodule:
+  - text: For a nodule, recommendations typically include regular monitoring to observe any changes in size or characteristics, maintaining a healthy lifestyle to support overall well-being, and consistent follow-ups with a healthcare provider for assessment and guidance.
+
+  utter_give_treat_nodule:
+  - text: Treatments for a nodule depend on its type, size, and location and may include watchful waiting, surgical removal, medication (especially for thyroid nodules), or in some cases, radiation or chemotherapy if the nodule is malignant.
+
+  utter_give_what_pneumonia:
+  - text: Pneumonia is an infection that inflames the air sacs in one or both lungs, which may fill with fluid or pus, causing symptoms like cough, fever, and difficulty breathing.
+
+  utter_give_recomendations_pneumonia:
+  - text: For pneumonia, it's recommended to rest, stay hydrated, follow a balanced diet, avoid smoking, and practice good hygiene to prevent the spread of infection, along with following prescribed treatments.
+
+  utter_give_treat_pneumonia:
+  - text: Treatments for pneumonia typically include antibiotics for bacterial cases, antiviral medications for viral pneumonia, cough medicine, fever reducers, and in severe cases, hospitalization for oxygen therapy and stronger medication.
+
+  utter_give_what_pneumothorax:
+  - text: Pneumothorax is a medical condition where air accumulates in the pleural space between the lung and the chest wall, causing the lung to collapse, leading to chest pain and difficulty breathing.
+
+  utter_give_recomendations_pneumothorax:
+  - text: For pneumothorax, recommendations typically include avoiding activities that increase the risk of lung collapse, such as diving or flying at high altitudes, and monitoring for any respiratory symptoms, especially in individuals with a history of pneumothorax.
+
+  utter_give_treat_pneumothorax:
+  - text: Possible treatments for pneumothorax depend on its size and severity, and can include observation for small, asymptomatic cases, needle aspiration or chest tube insertion to remove air from the pleural space for larger or symptomatic cases, and in some instances, surgery to prevent recurrence.
+
+  utter_give_what_effusion:
+  - text: Effusion is the accumulation of fluid in a body cavity, like the chest or abdomen, causing pain, swelling, and breathing difficulties.
+
+  utter_give_recomendations_effusion:
+  - text: For effusion, it's advised to follow medical treatments as prescribed, engage in light physical activity as tolerated, maintain a healthy diet, stay hydrated, avoid smoking, and regularly follow up with a healthcare provider for monitoring and adjustment of treatment.
+
+  utter_give_treat_effusion:
+  - text: Possible treatments for effusion include draining the fluid, medication to address the underlying cause, surgery in severe cases, and supportive therapies like pain management and respiratory support.
 
 
 session_config:
