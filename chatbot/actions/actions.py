@@ -28,8 +28,8 @@ class Utils():
 
 class ActionProccessImage(Action):
     
-    API_ENDPOINT = os.environ['API_ENDPOINT']+'/proccessimage'
-    API_KEY = os.environ['API_KEY']
+    API_ENDPOINT = 'http://127.0.0.1:8000'+'/proccessimage'
+    API_KEY = 'LambtonProject'
 
 
     def name(self) -> Text:
@@ -39,21 +39,27 @@ class ActionProccessImage(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        global U_DISEASE
+        username = tracker.get_slot('user_name')
         
-        headers = {'x-token': self.API_KEY}
-        res = requests.get(url = self.API_ENDPOINT, headers=headers)
-        if res.status_code != 404:
-            response = json.loads(res.text)
-            disease, value = Utils.find_highest_value(response)
-            U_DISEASE = disease
+        if username is not None:
+        
+            global U_DISEASE
             
-            if disease.lower() != 'no finding':
-                message=f"After an in-depth analysis, there is a high probability that the patient has {disease}"
+            headers = {'x-token': self.API_KEY}
+            res = requests.get(url = self.API_ENDPOINT, headers=headers)
+            if res.status_code != 404:
+                response = json.loads(res.text)
+                disease, value = Utils.find_highest_value(response)
+                U_DISEASE = disease
+                
+                if disease.lower() != 'no finding':
+                    message=f"After an in-depth analysis, there is a high probability that the patient {username} has {disease}"
+                else:
+                    message=f"After an in-depth analysis, there is a high probability that the patient {username} does not have any diseases"
             else:
-                message=f"After an in-depth analysis, there is a high probability that the patient does not have any diseases"
+                    message=f"Please upload the image. Then type 'analyze image'"
         else:
-                message=f"Please upload the image. Then type 'analyze image'"
+            message=f"Sorry, I cannot process the image."
 
         dispatcher.utter_message(text=message)
         
@@ -61,8 +67,8 @@ class ActionProccessImage(Action):
 
 class ActionCreatePDF(Action):
     
-    API_ENDPOINT = os.environ['API_ENDPOINT']+'/createpdf'
-    API_KEY = os.environ['API_KEY']
+    API_ENDPOINT = 'http://127.0.0.1:8000'+'/createpdf'
+    API_KEY = 'LambtonProject'
 
 
     def name(self) -> Text:
@@ -72,47 +78,54 @@ class ActionCreatePDF(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        global U_DISEASE
+        slot_value = tracker.get_slot('user_name')
         
-        if U_DISEASE != "":
-            disease = U_DISEASE
-        else:
-            disease = 'No Finding'
+        if slot_value is not None:
         
-        headers = {
-            "x-token": self.API_KEY,
-            "Content-Type": "application/json"
-        }
-        
-        payload = {
-            "name": tracker.get_slot("user_name"),
-            "age": tracker.get_slot("user_age"),
-            "birth": tracker.get_slot("user_birth"),
-            "address": tracker.get_slot("user_address"),
-            "height": tracker.get_slot("user_height"),
-            "weight": tracker.get_slot("user_weight"),
-            "disease": disease
-        }        
-        # payload = {
-        #     "name": "John Doe",
-        #     "age": "30",
-        #     "birth": "January 1, 1993",
-        #     "address": "123 Main St, City, Country",
-        #     "height": "180",
-        #     "weight": "75",
-        #     "disease": "mass"
-        # }
-        res = requests.request("POST", self.API_ENDPOINT, json=payload, headers=headers)
-        print(payload)
-        print(res.text)
+            global U_DISEASE
+            
+            if U_DISEASE != "":
+                disease = U_DISEASE
+            else:
+                disease = 'No Finding'
+            
+            headers = {
+                "x-token": self.API_KEY,
+                "Content-Type": "application/json"
+            }
+            
+            payload = {
+                "name": tracker.get_slot("user_name"),
+                "age": tracker.get_slot("user_age"),
+                "birth": tracker.get_slot("user_birth"),
+                "address": tracker.get_slot("user_address"),
+                "height": tracker.get_slot("user_height"),
+                "weight": tracker.get_slot("user_weight"),
+                "disease": disease
+            }        
+            # payload = {
+            #     "name": "John Doe",
+            #     "age": "30",
+            #     "birth": "January 1, 1993",
+            #     "address": "123 Main St, City, Country",
+            #     "height": "180",
+            #     "weight": "75",
+            #     "disease": "mass"
+            # }
+            res = requests.request("POST", self.API_ENDPOINT, json=payload, headers=headers)
+            print(payload)
+            print(res.text)
 
-        
-        if res.status_code == 200:
-            message=f"The PDF was created"
-        else:
-            message=f"Error creating PDF"
+            
+            if res.status_code == 200:
+                message=f"The PDF was created, if you want to download it, please write something like 'Show me the pdf'"
+            else:
+                message=f"Error creating PDF"
 
-        dispatcher.utter_message(text=message)
+            dispatcher.utter_message(text=message)
+        
+        else:
+            dispatcher.utter_message(text='To generate a PDF, I need the patient information, so write something like "I want to check an x-ray".')
         
         return []
 

@@ -125,9 +125,180 @@ nlu:
     - Can you show me the pdf?
     - Generate pdf
     - Show me pdf
+    - Download the pdf
     - pdf
 
+- intent: what_atelectasis
+  examples: |
+    - what is atelectasis?
+    - give me information about atelectasis
+    - explain me atelectasis
+    - Could you define atelectasis?
+    - Please provide details on atelectasis
+    - Can you elaborate on what atelectasis is?
  
+- intent: reco_atelectasis
+  examples: |
+    - can you give me recommendations for atelectasis?
+    - what do you recommend for atelectasis?
+    - Could you suggest some advice for dealing with atelectasis?
+    - What are your suggestions for managing atelectasis?
 
+- intent: treat_atelectasis
+  examples: |
+    - Can you tell me a treatment for atelectasis?
+    - Do you know any treatment for atelectasis?
+    - How can I treat atelectasis?
+    - What are some methods to treat atelectasis?
+    - Could you provide information on treatments available for atelectasis?
+    - What options are there for managing atelectasis?
 
+- intent: what_effusion
+  examples: |
+    - what is effusion?
+    - give me information about effusion
+    - explain me effusion
+    - Could you define effusion?
+    - Please provide details on effusion
+    - Can you elaborate on what effusion is?
+ 
+- intent: reco_effusion
+  examples: |
+    - can you give me recommendations for effusion?
+    - what do you recommend for effusion?
+    - Could you suggest some advice for dealing with effusion?
+    - What are your suggestions for managing effusion?
 
+- intent: treat_effusion
+  examples: |
+    - Can you tell me a treatment for effusion?
+    - Do you know any treatment for effusion?
+    - How can I treat effusion?
+    - What are some methods to treat effusion?
+    - Could you provide information on treatments available for effusion?
+    - What options are there for managing effusion?
+
+- intent: what_infiltration
+  examples: |
+    - what is infiltration?
+    - give me information about infiltration
+    - explain me infiltration
+    - Could you define infiltration?
+    - Please provide details on infiltration
+    - Can you elaborate on what infiltration is?
+ 
+- intent: reco_infiltration
+  examples: |
+    - can you give me recommendations for infiltration?
+    - what do you recommend for infiltration?
+    - Could you suggest some advice for dealing with infiltration?
+    - What are your suggestions for managing infiltration?
+
+- intent: treat_infiltration
+  examples: |
+    - Can you tell me a treatment for infiltration?
+    - Do you know any treatment for infiltration?
+    - How can I treat infiltration?
+    - What are some methods to treat infiltration?
+    - Could you provide information on treatments available for infiltration?
+    - What options are there for managing infiltration?
+
+- intent: what_mass
+  examples: |
+    - what is mass?
+    - give me information about mass
+    - explain me mass
+    - Could you define mass?
+    - Please provide details on mass
+    - Can you elaborate on what mass is?
+ 
+- intent: reco_mass
+  examples: |
+    - can you give me recommendations for mass?
+    - what do you recommend for mass?
+    - Could you suggest some advice for dealing with mass?
+    - What are your suggestions for managing mass?
+
+- intent: treat_mass
+  examples: |
+    - Can you tell me a treatment for mass?
+    - Do you know any treatment for mass?
+    - How can I treat mass?
+    - What are some methods to treat mass?
+    - Could you provide information on treatments available for mass?
+    - What options are there for managing mass?
+
+- intent: what_nodule
+  examples: |
+    - what is nodule?
+    - give me information about nodule
+    - explain me nodule
+    - Could you define nodule?
+    - Please provide details on nodule
+    - Can you elaborate on what nodule is?
+ 
+- intent: reco_nodule
+  examples: |
+    - can you give me recommendations for nodule?
+    - what do you recommend for nodule?
+    - Could you suggest some advice for dealing with nodule?
+    - What are your suggestions for managing nodule?
+
+- intent: treat_nodule
+  examples: |
+    - Can you tell me a treatment for nodule?
+    - Do you know any treatment for nodule?
+    - How can I treat nodule?
+    - What are some methods to treat nodule?
+    - Could you provide information on treatments available for nodule?
+    - What options are there for managing nodule?
+
+- intent: what_pneumonia
+  examples: |
+    - what is pneumonia?
+    - give me information about pneumonia
+    - explain me pneumonia
+    - Could you define pneumonia?
+    - Please provide details on pneumonia
+    - Can you elaborate on what pneumonia is?
+ 
+- intent: reco_pneumonia
+  examples: |
+    - can you give me recommendations for pneumonia?
+    - what do you recommend for pneumonia?
+    - Could you suggest some advice for dealing with pneumonia?
+    - What are your suggestions for managing pneumonia?
+
+- intent: treat_pneumonia
+  examples: |
+    - Can you tell me a treatment for pneumonia?
+    - Do you know any treatment for pneumonia?
+    - How can I treat pneumonia?
+    - What are some methods to treat pneumonia?
+    - Could you provide information on treatments available for pneumonia?
+    - What options are there for managing pneumonia?
+
+- intent: what_pneumothorax
+  examples: |
+    - what is pneumothorax?
+    - give me information about pneumothorax
+    - explain me pneumothorax
+    - Could you define pneumothorax?
+    - Please provide details on pneumothorax
+    - Can you elaborate on what pneumothorax is?
+ 
+- intent: reco_pneumothorax
+  examples: |
+    - can you give me recommendations for pneumothorax?
+    - what do you recommend for pneumothorax?
+    - Could you suggest some advice for dealing with pneumothorax?
+    - What are your suggestions for managing pneumothorax?
+
+- intent: treat_pneumothorax
+  examples: |
+    - Can you tell me a treatment for pneumothorax?
+    - Do you know any treatment for pneumothorax?
+    - How can I treat pneumothorax?
+    - What are some methods to treat pneumothorax?
+    - Could you provide information on treatments available for pneumothorax?
+    - What options are there for managing pneumothorax?

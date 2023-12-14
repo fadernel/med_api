@@ -11,9 +11,12 @@ from reportlab.lib.units import inch
 from reportlab.platypus.flowables import Spacer
 from reportlab.platypus import PageBreak
 import json
+import numpy as np
+
 
 #Custom vars
 image_path = '.\\temp\image.jpg'
+image_path_2 = '.\\temp\image_2.jpg'
 json_path = '.\\db\\diseases.json'
 pdf_path = '.\\temp\\medical_xray_report.pdf'
 IMAGE_SIZE = 224
@@ -99,6 +102,7 @@ def preprocess_image(image_path=image_path):
         response[class_name] = float(prob)*100
         
     #os.remove(image_path)
+    
     
     return response
   
@@ -219,7 +223,7 @@ def create_pdf(uname = None, uage= None, ubirth= None,  uaddress= None, uheight=
     elements.append(Paragraph("Front Chest X-ray", title_style))
 
     # X-ray Image
-    image = Image(image_path, width=4 * inch, height=3 * inch)
+    image = Image(image_path_2, width=4 * inch, height=3 * inch)
     elements.append(image)
     elements.append(Spacer(1, 0.3 * inch))
 
@@ -247,3 +251,33 @@ def find_disease_info(disease_name):
         return disease_info['disease_details'], disease_info['preventive_measures']
     else:
         return '', ''
+
+def upload_image(file): 
+    #Loading the image
+    with open(image_path,'wb') as image:
+        image.write(file)
+        image.close()
+        
+    image = pge.open(image_path).convert('RGB')
+    
+    r, g, b = image.split()
+    
+    #Increasing the green channel by 50%
+    g = g.point(lambda i: i * 1.9)
+    
+    result = pge.merge('RGB', (r, g, b))
+        
+    result.save(image_path_2)
+    
+    # gray_image = image.convert('L')
+
+    # green_palette = []
+    # for i in range(256):
+    #     green_palette.extend((0, i, 0))  # R=0, G=i, B=0
+    
+    # gray_image.putpalette(green_palette)
+
+    # gray_image.save(image_path_2)
+    
+      
+    return

@@ -30,15 +30,70 @@ stories:
   - checkpoint: check_mood_finished
   - action: utter_requeriment
  
+# - story: show pdf
+#   steps:
+#   - intent: show_pdf
+#   - action: utter_pdf_xray
 
-- story: proccess image affirmative
+- story: what is atelectasis
   steps:
-  - intent: give_api
-  - action: utter_image_xray
-  - action: action_process_image
-  - action: action_create_pdf
+  - intent: what_atelectasis
+  - action: utter_give_what_atelectasis
+  - intent: reco_atelectasis
+  - action: utter_give_recomendations_atelectasis
+  - intent: treat_atelectasis
+  - action: utter_give_treat_atelectasis
 
-- story: show pdf
+- story: what is effusion
   steps:
-  - intent: show_pdf
-  - action: utter_pdf_xray
+  - intent: what_effusion
+  - action: utter_give_what_effusion
+  - intent: reco_effusion
+  - action: utter_give_recomendations_effusion
+  - intent: treat_effusion
+  - action: utter_give_treat_effusion
+
+- story: what is infiltration
+  steps:
+  - intent: what_infiltration
+  - action: utter_give_what_infiltration
+  - intent: reco_infiltration
+  - action: utter_give_recomendations_infiltration
+  - intent: treat_infiltration
+  - action: utter_give_treat_infiltration
+
+- story: what is mass
+  steps:
+  - intent: what_mass
+  - action: utter_give_what_mass
+  - intent: reco_mass
+  - action: utter_give_recomendations_mass
+  - intent: treat_mass
+  - action: utter_give_treat_mass
+
+- story: what is nodule
+  steps:
+  - intent: what_nodule
+  - action: utter_give_what_nodule
+  - intent: reco_nodule
+  - action: utter_give_recomendations_nodule
+  - intent: treat_nodule
+  - action: utter_give_treat_nodule
+
+- story: what is pneumonia
+  steps:
+  - intent: what_pneumonia
+  - action: utter_give_what_pneumonia
+  - intent: reco_pneumonia
+  - action: utter_give_recomendations_pneumonia
+  - intent: treat_pneumonia
+  - action: utter_give_treat_pneumonia
+
+- story: what is pneumothorax
+  steps:
+  - intent: what_pneumothorax
+  - action: utter_give_what_pneumothorax
+  - intent: reco_pneumothorax
+  - action: utter_give_recomendations_pneumothorax
+  - intent: treat_pneumothorax
+  - action: utter_give_treat_pneumothorax
